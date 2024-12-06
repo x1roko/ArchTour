@@ -42,7 +42,7 @@ def generate_wordcloud_image(search_queries: list[str], reviews: list[str]):
     bird_mask = np.array(Image.open('bird_shape.png'))
     wordcloud = WordCloud(
         mask=bird_mask,
-        background_color='white',
+        background_color='black',
         contour_color='black',
         contour_width=1
     ).generate_from_frequencies(word_counts)

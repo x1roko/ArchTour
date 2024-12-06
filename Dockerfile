@@ -1,17 +1,12 @@
-# Используем официальный Python-образ
-FROM python:3.12-slim
+FROM python:3.12-alpine
 
-# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем файлы проекта в контейнер
-COPY . .
-
-# Устанавливаем зависимости
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Указываем порт, который будет использовать приложение
-EXPOSE 8000
+COPY . .
 
-# Команда для запуска приложения
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+# Указываем команду для запуска приложения
+CMD ["uvicorn", "app.main:app", "--host", "localhost", "--port", "8000"]
